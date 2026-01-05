@@ -14,6 +14,40 @@ not p.
         name: (identifier)))))
 
 ==================
+metasp symbolic literal
+==================
+
+&p(&q(1,a);&z;#sup) : not -&g.
+
+---
+
+(source_file
+  (rule
+    (disjunction
+      (conditional_literal
+        (literal
+          (metasp_symbolic_atom
+            (identifier)
+            (metasp_terms
+              (metasp_function
+                (identifier)
+                (metasp_terms
+                  (number)
+                  (function
+                    (identifier)))))
+            (metasp_terms
+              (metasp_function
+                (identifier)))
+            (metasp_terms
+              (supremum))))
+        (condition
+          (literal
+            (default_negation)
+            (metasp_symbolic_atom
+              (classical_negation)
+              (identifier))))))))
+
+==================
 comparison
 ==================
 
@@ -164,7 +198,7 @@ head aggregate
 head theory
 ==================
 
-&p(;a;b;) < 1.
+&p(;a;b;) {} < 1.
 
 ---
 

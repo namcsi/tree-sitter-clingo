@@ -599,3 +599,228 @@ Args:
     (doc_desc
       (doc_fragment_string))
     (doc_args)))
+
+==================
+metasp type tel
+==================
+
+#type tel {
+    expressions: {
+	&true/0;
+	&false/0;
+	&or/2: {
+	    type: tel, safety: unsafe;
+	    type: tel, safety: unsafe;
+	};
+	&and/2: {
+	    type: tel, safety: safe;
+	    type: tel, safety: safe;
+	};
+	&final/0;
+	&next/1: {
+	    type: tel, safety: safe;
+	};
+	&until/2: {
+	    type: tel, safety: unsafe;
+	    type: tel, safety: safe;
+	};
+    };
+    subtypes: {
+	atom;
+    };
+    macros: {
+	&wnext(v1): &or(&next(v1), &final);
+	&eventually(v1): &until(&true, v1);
+	&always(v1): &release(&false, v1);
+	&release(v1, v2): &until(v2, &and(v2, &or(v1, &final)));
+	where: {
+	    v1: tel;
+	    v2: tel;
+	};
+    };
+    occurrence: any;
+}.
+
+---
+
+(source_file
+  (metasp_type
+    (identifier)
+    (metasp_expression_definitions
+      (metasp_expression_definition
+        (metasp_signature
+          (identifier)
+          (number)))
+      (metasp_expression_definition
+        (metasp_signature
+          (identifier)
+          (number)))
+      (metasp_expression_definition
+        (metasp_signature
+          (identifier)
+          (number))
+        (metasp_argument_definitions
+          (metasp_argument_definition
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))
+            (metasp_keyword_arg
+              (identifier)
+              (identifier)))
+          (metasp_argument_definition
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))
+            (metasp_keyword_arg
+              (identifier)
+              (identifier)))))
+      (metasp_expression_definition
+        (metasp_signature
+          (identifier)
+          (number))
+        (metasp_argument_definitions
+          (metasp_argument_definition
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))
+            (metasp_keyword_arg
+              (identifier)
+              (identifier)))
+          (metasp_argument_definition
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))
+            (metasp_keyword_arg
+              (identifier)
+              (identifier)))))
+      (metasp_expression_definition
+        (metasp_signature
+          (identifier)
+          (number)))
+      (metasp_expression_definition
+        (metasp_signature
+          (identifier)
+          (number))
+        (metasp_argument_definitions
+          (metasp_argument_definition
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))
+            (metasp_keyword_arg
+              (identifier)
+              (identifier)))))
+      (metasp_expression_definition
+        (metasp_signature
+          (identifier)
+          (number))
+        (metasp_argument_definitions
+          (metasp_argument_definition
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))
+            (metasp_keyword_arg
+              (identifier)
+              (identifier)))
+          (metasp_argument_definition
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))
+            (metasp_keyword_arg
+              (identifier)
+              (identifier))))))
+    (metasp_subtypes
+      (identifier))
+    (metasp_macros
+      (metasp_macro_definition
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (function
+              (identifier))))
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (metasp_function
+              (identifier)
+              (metasp_terms
+                (function
+                  (identifier))))
+            (metasp_function
+              (identifier)))))
+      (metasp_macro_definition
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (function
+              (identifier))))
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (metasp_function
+              (identifier))
+            (function
+              (identifier)))))
+      (metasp_macro_definition
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (function
+              (identifier))))
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (metasp_function
+              (identifier))
+            (function
+              (identifier)))))
+      (metasp_macro_definition
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (function
+              (identifier))
+            (function
+              (identifier))))
+        (metasp_function
+          (identifier)
+          (metasp_terms
+            (function
+              (identifier))
+            (metasp_function
+              (identifier)
+              (metasp_terms
+                (function
+                  (identifier))
+                (metasp_function
+                  (identifier)
+                  (metasp_terms
+                    (function
+                      (identifier))
+                    (metasp_function
+                      (identifier)))))))))
+      (metasp_macro_where
+        (metasp_keyword_arg
+          (identifier)
+          (identifier))
+        (metasp_keyword_arg
+          (identifier)
+          (identifier))))
+    (metasp_occurrence
+      (theory_atom_type))))
+
+==================
+metasp type variable in macro
+:error
+==================
+
+#type bad {
+    macros: {
+	&release(v1, V2): &until(V2, &and(v2, &or(v1, &final)));
+	where: {
+	    v1: tel;
+	    v2: tel;
+	};
+    };
+}.
+
+---

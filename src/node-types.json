@@ -40,6 +40,88 @@
     ]
   },
   {
+    "type": "metasp_const_term",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "abs",
+        "named": true
+      },
+      {
+        "type": "binary_operation",
+        "named": true
+      },
+      {
+        "type": "function",
+        "named": true
+      },
+      {
+        "type": "infimum",
+        "named": true
+      },
+      {
+        "type": "metasp_function",
+        "named": true
+      },
+      {
+        "type": "number",
+        "named": true
+      },
+      {
+        "type": "string",
+        "named": true
+      },
+      {
+        "type": "supremum",
+        "named": true
+      },
+      {
+        "type": "tuple",
+        "named": true
+      },
+      {
+        "type": "unary_operation",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "metasp_term",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "metasp_function",
+        "named": true
+      },
+      {
+        "type": "term",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "metasp_type_keyword",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "metasp_expression_definitions",
+        "named": true
+      },
+      {
+        "type": "metasp_macros",
+        "named": true
+      },
+      {
+        "type": "metasp_occurrence",
+        "named": true
+      },
+      {
+        "type": "metasp_subtypes",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "simple_atom",
     "named": true,
     "subtypes": [
@@ -49,6 +131,10 @@
       },
       {
         "type": "comparison",
+        "named": true
+      },
+      {
+        "type": "metasp_symbolic_atom",
         "named": true
       },
       {
@@ -95,6 +181,10 @@
       },
       {
         "type": "maximize",
+        "named": true
+      },
+      {
+        "type": "metasp_type",
         "named": true
       },
       {
@@ -1303,6 +1393,340 @@
     }
   },
   {
+    "type": "metasp_argument_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "metasp_keyword_arg",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_argument_definitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "metasp_argument_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_expression_definition",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "metasp_argument_definitions",
+            "named": true
+          }
+        ]
+      },
+      "signature": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "metasp_signature",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "metasp_expression_definitions",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "metasp_expression_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_function",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "empty_pool_item",
+            "named": true
+          },
+          {
+            "type": "metasp_terms",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "&",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "metasp_keyword_arg",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "metasp_macro_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "metasp_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_macro_where",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "metasp_keyword_arg",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_macros",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "metasp_macro_definition",
+          "named": true
+        },
+        {
+          "type": "metasp_macro_where",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_occurrence",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "theory_atom_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_signature",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_subtypes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_symbolic_atom",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "empty_pool_item",
+            "named": true
+          },
+          {
+            "type": "metasp_terms",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "&",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "sign": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "classical_negation",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "metasp_terms",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "metasp_const_term",
+          "named": true
+        },
+        {
+          "type": "metasp_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "metasp_type",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "metasp_type_keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "minimize",
     "named": true,
     "fields": {
@@ -2465,6 +2889,10 @@
     "named": false
   },
   {
+    "type": "#type",
+    "named": false
+  },
+  {
     "type": "%*!",
     "named": false
   },
@@ -2642,6 +3070,10 @@
     "named": true
   },
   {
+    "type": "expressions",
+    "named": false
+  },
+  {
     "type": "f\"",
     "named": false
   },
@@ -2687,8 +3119,16 @@
     "named": true
   },
   {
+    "type": "macros",
+    "named": false
+  },
+  {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "occurrence",
+    "named": false
   },
   {
     "type": "relation",
@@ -2697,6 +3137,10 @@
   {
     "type": "string_fragment",
     "named": true
+  },
+  {
+    "type": "subtypes",
+    "named": false
   },
   {
     "type": "supremum",
@@ -2721,6 +3165,10 @@
   {
     "type": "variable",
     "named": true
+  },
+  {
+    "type": "where",
+    "named": false
   },
   {
     "type": "{",
