@@ -4480,17 +4480,8 @@
           "type": "FIELD",
           "name": "atom",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "symbolic_atom"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "metasp_symbolic_atom"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "symbolic_atom"
           }
         },
         {
@@ -4805,17 +4796,8 @@
           "type": "FIELD",
           "name": "atom",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "symbolic_atom"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "metasp_symbolic_atom"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "symbolic_atom"
           }
         },
         {

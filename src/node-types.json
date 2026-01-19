@@ -1263,10 +1263,6 @@
         "required": true,
         "types": [
           {
-            "type": "metasp_symbolic_atom",
-            "named": true
-          },
-          {
             "type": "symbolic_atom",
             "named": true
           }
@@ -1854,10 +1850,6 @@
         "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "metasp_symbolic_atom",
-            "named": true
-          },
           {
             "type": "symbolic_atom",
             "named": true
