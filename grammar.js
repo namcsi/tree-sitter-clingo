@@ -796,7 +796,7 @@ module.exports = grammar({
       seq("#project", field("signature", $.signature), "."),
 
     project_atom: ($) =>
-      seq("#project", field("atom", $.symbolic_atom), $._colon_body),
+      seq("#project", field("atom", choice($.symbolic_atom, $.metasp_symbolic_atom)), $._colon_body),
 
     parameters: ($) => seq($.identifier, repeat(seq(",", $.identifier))),
 
@@ -849,7 +849,7 @@ module.exports = grammar({
     heuristic: ($) =>
       seq(
         "#heuristic",
-        field("atom", $.symbolic_atom),
+        field("atom", choice($.symbolic_atom, $.metasp_symbolic_atom)),
         $._colon_body,
         "[",
         field("weight", $.weight),
@@ -864,7 +864,7 @@ module.exports = grammar({
     external: ($) =>
       seq(
         "#external",
-        field("atom", $.symbolic_atom),
+        field("atom", choice($.symbolic_atom, $.metasp_symbolic_atom)),
         $._colon_body,
         optional(seq("[", field("type", $.term), "]")),
       ),
