@@ -28,17 +28,17 @@ metasp symbolic literal
         (literal
           (metasp_symbolic_atom
             (identifier)
-            (metasp_terms
+            (terms
               (metasp_function
                 (identifier)
-                (metasp_terms
+                (terms
                   (number)
                   (function
                     (identifier)))))
-            (metasp_terms
+            (terms
               (metasp_function
                 (identifier)))
-            (metasp_terms
+            (terms
               (supremum))))
         (condition
           (literal

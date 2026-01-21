@@ -941,6 +941,15 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
+            "name": "metasp_const_function"
+          },
+          "named": true,
+          "value": "metasp_function"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
             "name": "const_tuple"
           },
           "named": true,
@@ -2384,6 +2393,10 @@
         {
           "type": "SYMBOL",
           "name": "function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "metasp_function"
         },
         {
           "type": "SYMBOL",
@@ -4330,6 +4343,32 @@
         }
       ]
     },
+    "extended_signature": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "signature"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "metasp_signature"
+        }
+      ]
+    },
+    "extended_symbolic_atom": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "symbolic_atom"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "metasp_symbolic_atom"
+        }
+      ]
+    },
     "show": {
       "type": "SEQ",
       "members": [
@@ -4389,7 +4428,7 @@
           "name": "signature",
           "content": {
             "type": "SYMBOL",
-            "name": "signature"
+            "name": "extended_signature"
           }
         },
         {
@@ -4439,7 +4478,7 @@
           "name": "signature",
           "content": {
             "type": "SYMBOL",
-            "name": "signature"
+            "name": "extended_signature"
           }
         },
         {
@@ -4460,7 +4499,7 @@
           "name": "signature",
           "content": {
             "type": "SYMBOL",
-            "name": "signature"
+            "name": "extended_signature"
           }
         },
         {
@@ -4481,7 +4520,7 @@
           "name": "atom",
           "content": {
             "type": "SYMBOL",
-            "name": "symbolic_atom"
+            "name": "extended_symbolic_atom"
           }
         },
         {
@@ -4797,7 +4836,7 @@
           "name": "atom",
           "content": {
             "type": "SYMBOL",
-            "name": "symbolic_atom"
+            "name": "extended_symbolic_atom"
           }
         },
         {
@@ -4884,17 +4923,8 @@
           "type": "FIELD",
           "name": "atom",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "symbolic_atom"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "metasp_symbolic_atom"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "extended_symbolic_atom"
           }
         },
         {
@@ -5469,145 +5499,13 @@
               "name": "arguments",
               "content": {
                 "type": "SYMBOL",
-                "name": "_metasp_arg_pool"
+                "name": "_arg_pool"
               }
             },
             {
               "type": "BLANK"
             }
           ]
-        }
-      ]
-    },
-    "_metasp_arg_pool": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "arguments",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "metasp_terms"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_metasp_arg_pool_n"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
-    "_metasp_arg_pool_n": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "arguments",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "metasp_terms"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "empty_pool_item_first"
-                },
-                "named": true,
-                "value": "empty_pool_item"
-              }
-            ]
-          }
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ";"
-              },
-              {
-                "type": "FIELD",
-                "name": "arguments",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "metasp_terms"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "empty_pool_item"
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "metasp_terms": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "metasp_term"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "metasp_term"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "metasp_term": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "term"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "metasp_function"
         }
       ]
     },
@@ -5627,89 +5525,12 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_metasp_arg_pool"
+              "name": "_arg_pool"
             },
             {
               "type": "BLANK"
             }
           ]
-        }
-      ]
-    },
-    "metasp_const_term": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_const_term"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "metasp_const_function"
-          },
-          "named": true,
-          "value": "metasp_function"
-        }
-      ]
-    },
-    "metasp_const_terms": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "metasp_const_term"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "metasp_const_term"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "_metasp_const_arg_pool": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "FIELD",
-          "name": "arguments",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "metasp_const_terms"
-                },
-                "named": true,
-                "value": "metasp_terms"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ")"
         }
       ]
     },
@@ -5729,7 +5550,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_metasp_const_arg_pool"
+              "name": "_const_arg_pool"
             },
             {
               "type": "BLANK"
@@ -5743,7 +5564,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_metasp_identifier"
+          "name": "metasp_atom_identifier"
         },
         {
           "type": "STRING",
@@ -6306,6 +6127,10 @@
       "function"
     ],
     [
+      "metasp_signature",
+      "metasp_function"
+    ],
+    [
       "_metasp_identifier",
       "theory_atom"
     ]
@@ -6360,15 +6185,15 @@
   "supertypes": [
     "statement",
     "term",
-    "metasp_term",
-    "metasp_const_term",
     "tuple_pool_item",
     "theory_root_term",
     "simple_atom",
     "head",
     "literal_sign",
     "theory_term",
-    "metasp_type_keyword"
+    "metasp_type_keyword",
+    "extended_signature",
+    "extended_symbolic_atom"
   ],
   "reserved": {}
 }

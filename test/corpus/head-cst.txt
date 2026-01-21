@@ -22,10 +22,11 @@ metasp symbolic literal
 ==================
 
 &p(&q(1,a);&z;#sup) : not -&g.
+f(&a).
 
 ---
 
-1:0  - 2:0    source_file
+1:0  - 3:0    source_file
 1:0  - 1:30     rule
 1:0  - 1:29       head: disjunction
 1:0  - 1:29         conditional_literal
@@ -34,24 +35,24 @@ metasp symbolic literal
 1:0  - 1:1                "&"
 1:1  - 1:2                name: identifier `p`
 1:2  - 1:3                "("
-1:3  - 1:10               arguments: metasp_terms
+1:3  - 1:10               arguments: terms
 1:3  - 1:10                 metasp_function
 1:3  - 1:4                    "&"
 1:4  - 1:5                    name: identifier `q`
 1:5  - 1:6                    "("
-1:6  - 1:9                    arguments: metasp_terms
+1:6  - 1:9                    arguments: terms
 1:6  - 1:7                      number `1`
 1:7  - 1:8                      ","
 1:8  - 1:9                      function
 1:8  - 1:9                        name: identifier `a`
 1:9  - 1:10                   ")"
 1:10 - 1:11               ";"
-1:11 - 1:13               arguments: metasp_terms
+1:11 - 1:13               arguments: terms
 1:11 - 1:13                 metasp_function
 1:11 - 1:12                   "&"
 1:12 - 1:13                   name: identifier `z`
 1:13 - 1:14               ";"
-1:14 - 1:18               arguments: metasp_terms
+1:14 - 1:18               arguments: terms
 1:14 - 1:18                 supremum `#sup`
 1:18 - 1:19               ")"
 1:20 - 1:21           ":"
@@ -63,6 +64,17 @@ metasp symbolic literal
 1:27 - 1:28                 "&"
 1:28 - 1:29                 name: identifier `g`
 1:29 - 1:30       "."
+2:0  - 2:6      rule
+2:0  - 2:5        head: literal
+2:0  - 2:5          atom: symbolic_atom
+2:0  - 2:1            name: identifier `f`
+2:1  - 2:2            "("
+2:2  - 2:4            arguments: terms
+2:2  - 2:4              metasp_function
+2:2  - 2:3                "&"
+2:3  - 2:4                name: identifier `a`
+2:4  - 2:5            ")"
+2:5  - 2:6        "."
 
 ==================
 comparison

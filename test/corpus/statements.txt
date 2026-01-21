@@ -239,10 +239,10 @@ single show
 ---
 
 (source_file
-    (show_signature
+  (show_signature
     (signature
-        (identifier)
-        (number))))
+      (identifier)
+      (number))))
 
 ==================
 defined
@@ -273,6 +273,10 @@ project
 #project a.
 #project a : .
 #project a : b.
+#project &a/2.
+#project -&a/2.
+#project &a.
+#project &a : &b.
 
 ---
 
@@ -298,6 +302,25 @@ project
     body: (body
       (body_literal
         atom: (symbolic_atom
+          name: (identifier)))))
+  (project_signature
+    signature: (metasp_signature
+      name: (identifier)
+      (number)))
+  (project_signature
+    signature: (metasp_signature
+      sign: (classical_negation)
+      name: (identifier)
+      (number)))
+  (project_atom
+    atom: (metasp_symbolic_atom
+      name: (identifier)))
+  (project_atom
+    atom: (metasp_symbolic_atom
+      name: (identifier))
+    body: (body
+      (body_literal
+        atom: (metasp_symbolic_atom
           name: (identifier))))))
 
 ==================
@@ -402,7 +425,11 @@ external
 #external a : b.
 #external a: .
 #external a(X) : p(B). [X]
-
+#external &a.
+#external -&a.
+#external &a : &b.
+#external &a: .
+#external &a(X) : &p(B). [X]
 ---
 
 (source_file
@@ -431,6 +458,35 @@ external
     body: (body
       (body_literal
         atom: (symbolic_atom
+          name: (identifier)
+          arguments: (terms
+            (variable)))))
+    type: (variable))
+  (external
+    atom: (metasp_symbolic_atom
+      name: (identifier)))
+  (external
+    atom: (metasp_symbolic_atom
+      sign: (classical_negation)
+      name: (identifier)))
+  (external
+    atom: (metasp_symbolic_atom
+      name: (identifier))
+    body: (body
+      (body_literal
+        atom: (metasp_symbolic_atom
+          name: (identifier)))))
+  (external
+    atom: (metasp_symbolic_atom
+      name: (identifier)))
+  (external
+    atom: (metasp_symbolic_atom
+      name: (identifier)
+      arguments: (terms
+        (variable)))
+    body: (body
+      (body_literal
+        atom: (metasp_symbolic_atom
           name: (identifier)
           arguments: (terms
             (variable)))))
@@ -734,15 +790,15 @@ metasp type tel
       (metasp_macro_definition
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (function
               (identifier))))
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (metasp_function
               (identifier)
-              (metasp_terms
+              (terms
                 (function
                   (identifier))))
             (metasp_function
@@ -750,12 +806,12 @@ metasp type tel
       (metasp_macro_definition
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (function
               (identifier))))
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (metasp_function
               (identifier))
             (function
@@ -763,12 +819,12 @@ metasp type tel
       (metasp_macro_definition
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (function
               (identifier))))
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (metasp_function
               (identifier))
             (function
@@ -776,24 +832,24 @@ metasp type tel
       (metasp_macro_definition
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (function
               (identifier))
             (function
               (identifier))))
         (metasp_function
           (identifier)
-          (metasp_terms
+          (terms
             (function
               (identifier))
             (metasp_function
               (identifier)
-              (metasp_terms
+              (terms
                 (function
                   (identifier))
                 (metasp_function
                   (identifier)
-                  (metasp_terms
+                  (terms
                     (function
                       (identifier))
                     (metasp_function

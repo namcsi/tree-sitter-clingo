@@ -1,5 +1,33 @@
 [
   {
+    "type": "extended_signature",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "metasp_signature",
+        "named": true
+      },
+      {
+        "type": "signature",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "extended_symbolic_atom",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "metasp_symbolic_atom",
+        "named": true
+      },
+      {
+        "type": "symbolic_atom",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "head",
     "named": true,
     "subtypes": [
@@ -35,66 +63,6 @@
       },
       {
         "type": "double_default_negation",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "metasp_const_term",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "abs",
-        "named": true
-      },
-      {
-        "type": "binary_operation",
-        "named": true
-      },
-      {
-        "type": "function",
-        "named": true
-      },
-      {
-        "type": "infimum",
-        "named": true
-      },
-      {
-        "type": "metasp_function",
-        "named": true
-      },
-      {
-        "type": "number",
-        "named": true
-      },
-      {
-        "type": "string",
-        "named": true
-      },
-      {
-        "type": "supremum",
-        "named": true
-      },
-      {
-        "type": "tuple",
-        "named": true
-      },
-      {
-        "type": "unary_operation",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "metasp_term",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "metasp_function",
-        "named": true
-      },
-      {
-        "type": "term",
         "named": true
       }
     ]
@@ -263,6 +231,10 @@
       },
       {
         "type": "infimum",
+        "named": true
+      },
+      {
+        "type": "metasp_function",
         "named": true
       },
       {
@@ -710,6 +682,10 @@
             "named": true
           },
           {
+            "type": "metasp_function",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -742,7 +718,7 @@
         "required": true,
         "types": [
           {
-            "type": "signature",
+            "type": "extended_signature",
             "named": true
           }
         ]
@@ -952,11 +928,7 @@
         "required": true,
         "types": [
           {
-            "type": "metasp_symbolic_atom",
-            "named": true
-          },
-          {
-            "type": "symbolic_atom",
+            "type": "extended_symbolic_atom",
             "named": true
           }
         ]
@@ -1263,7 +1235,7 @@
         "required": true,
         "types": [
           {
-            "type": "symbolic_atom",
+            "type": "extended_symbolic_atom",
             "named": true
           }
         ]
@@ -1480,7 +1452,7 @@
             "named": true
           },
           {
-            "type": "metasp_terms",
+            "type": "terms",
             "named": true
           }
         ]
@@ -1598,15 +1570,36 @@
   {
     "type": "metasp_signature",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "&",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "sign": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "classical_negation",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
         {
           "type": "number",
           "named": true
@@ -1654,7 +1647,7 @@
             "named": true
           },
           {
-            "type": "metasp_terms",
+            "type": "terms",
             "named": true
           }
         ]
@@ -1683,25 +1676,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "metasp_terms",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "metasp_const_term",
-          "named": true
-        },
-        {
-          "type": "metasp_term",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1851,7 +1825,7 @@
         "required": true,
         "types": [
           {
-            "type": "symbolic_atom",
+            "type": "extended_symbolic_atom",
             "named": true
           }
         ]
@@ -1877,7 +1851,7 @@
         "required": true,
         "types": [
           {
-            "type": "signature",
+            "type": "extended_signature",
             "named": true
           }
         ]
@@ -2032,7 +2006,7 @@
         "required": true,
         "types": [
           {
-            "type": "signature",
+            "type": "extended_signature",
             "named": true
           }
         ]
@@ -2665,6 +2639,10 @@
         },
         {
           "type": "infimum",
+          "named": true
+        },
+        {
+          "type": "metasp_function",
           "named": true
         },
         {

@@ -44,6 +44,7 @@ module.exports = grammar({
   // "show signature" part of the statement production, along with this conflict.
   conflicts: ($) => [
     [$.signature, $.function],
+    [$.metasp_signature, $.metasp_function],
     [$._metasp_identifier, $.theory_atom],
   ],
 
@@ -73,8 +74,6 @@ module.exports = grammar({
   supertypes: ($) => [
     $.statement,
     $.term,
-    $.metasp_term,
-    $.metasp_const_term,
     $.tuple_pool_item,
     $.theory_root_term,
     $.simple_atom,
@@ -82,6 +81,8 @@ module.exports = grammar({
     $.literal_sign,
     $.theory_term,
     $.metasp_type_keyword,
+    $.extended_signature,
+    $.extended_symbolic_atom,
   ],
 
   rules: {
@@ -284,6 +285,7 @@ module.exports = grammar({
         alias($.const_unary_operation, $.unary_operation),
         alias($.const_abs, $.abs),
         alias($.const_function, $.function),
+	alias($.metasp_const_function, $.metasp_function),
         alias($.const_tuple, $.tuple),
       ),
 
@@ -442,6 +444,7 @@ module.exports = grammar({
         $.unary_operation,
         $.abs,
         $.function,
+	$.metasp_function,
         $.external_function,
         $.tuple,
       ),
@@ -776,6 +779,16 @@ module.exports = grammar({
 
     signature: ($) => seq($.atom_identifier, "/", field("arity", $.number)),
 
+    extended_signature: ($) => choice(
+	$.signature,
+	$.metasp_signature
+    ),
+
+    extended_symbolic_atom: ($) => choice(
+	$.symbolic_atom,
+	$.metasp_symbolic_atom
+    ),
+
     show: (_) => seq("#show", "."),
 
     show_term: ($) => seq("#show", field("term", $.term), $._colon_body),
@@ -785,18 +798,18 @@ module.exports = grammar({
     show_signature: ($) =>
       seq(
         "#show",
-        field("signature", $.signature),
+        field("signature", $.extended_signature),
         ".",
         optional(seq("[", field("value", $.boolean), "]")),
       ),
 
-    defined: ($) => seq("#defined", field("signature", $.signature), "."),
+    defined: ($) => seq("#defined", field("signature", $.extended_signature), "."),
 
     project_signature: ($) =>
-      seq("#project", field("signature", $.signature), "."),
+      seq("#project", field("signature", $.extended_signature), "."),
 
     project_atom: ($) =>
-      seq("#project", field("atom", $.symbolic_atom), $._colon_body),
+      seq("#project", field("atom", $.extended_symbolic_atom), $._colon_body),
 
     parameters: ($) => seq($.identifier, repeat(seq(",", $.identifier))),
 
@@ -849,7 +862,7 @@ module.exports = grammar({
     heuristic: ($) =>
       seq(
         "#heuristic",
-        field("atom", $.symbolic_atom),
+        field("atom", $.extended_symbolic_atom),
         $._colon_body,
         "[",
         field("weight", $.weight),
@@ -864,7 +877,7 @@ module.exports = grammar({
     external: ($) =>
       seq(
         "#external",
-        field("atom", choice($.symbolic_atom, $.metasp_symbolic_atom)),
+        field("atom", $.extended_symbolic_atom),
         $._colon_body,
         optional(seq("[", field("type", $.term), "]")),
       ),
@@ -977,70 +990,16 @@ module.exports = grammar({
     metasp_symbolic_atom: ($) =>
       seq(
         $.metasp_atom_identifier,
-        optional(field("arguments", $._metasp_arg_pool)),
-      ),
-
-    _metasp_arg_pool: ($) =>
-      seq(
-        "(",
-        choice(
-          field("arguments", optional($.metasp_terms)),
-          $._metasp_arg_pool_n,
-        ),
-        ")",
-      ),
-
-    _metasp_arg_pool_n: ($) =>
-      seq(
-        field(
-          "arguments",
-          choice(
-            $.metasp_terms,
-            alias($.empty_pool_item_first, $.empty_pool_item),
-          ),
-        ),
-        repeat1(
-          seq(
-            ";",
-            field("arguments", choice($.metasp_terms, $.empty_pool_item)),
-          ),
-        ),
-      ),
-
-    metasp_terms: ($) => seq($.metasp_term, repeat(seq(",", $.metasp_term))),
-
-
-
-    metasp_term: ($) =>
-      choice(
-        $.term,
-        $.metasp_function,
+        optional(field("arguments", $._arg_pool)),
       ),
 
     metasp_function: ($) =>
-      seq(field("name", $._metasp_identifier), optional($._metasp_arg_pool)),
-
-    metasp_const_term: ($) => choice(
-	$._const_term,
-	alias($.metasp_const_function, $.metasp_function)
-    ),
-
-    metasp_const_terms: ($) => seq(
-	$.metasp_const_term,
-	repeat(seq(",", $.metasp_const_term))
-    ),
-
-    _metasp_const_arg_pool: ($) =>
-      seq(
-        "(",
-        field("arguments", optional(alias($.metasp_const_terms, $.metasp_terms))),
-        ")",
-      ),
+      seq(field("name", $._metasp_identifier), optional($._arg_pool)),
 
     metasp_const_function: ($) =>
-      seq(field("name", $._metasp_identifier), optional($._metasp_const_arg_pool)),
+      seq(field("name", $._metasp_identifier), optional($._const_arg_pool)),
 
-    metasp_signature: ($) => seq($._metasp_identifier, "/", $.number),
+    metasp_signature: ($) => seq($.metasp_atom_identifier, "/", $.number),
 
     metasp_type: ($) =>
       seq(
@@ -1109,7 +1068,6 @@ module.exports = grammar({
         ";",
       ),
 
-    // TODO: define some metasp_const_function and restrict to that
     metasp_macro_definition: ($) =>
       seq(
         choice(alias($.metasp_const_function, $.metasp_function), $.identifier),
