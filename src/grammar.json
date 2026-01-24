@@ -5571,8 +5571,12 @@
           "value": "/"
         },
         {
-          "type": "SYMBOL",
-          "name": "number"
+          "type": "FIELD",
+          "name": "arity",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
         }
       ]
     },

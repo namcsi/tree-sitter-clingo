@@ -1571,6 +1571,16 @@
     "type": "metasp_signature",
     "named": true,
     "fields": {
+      "arity": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": true,
         "required": true,
@@ -1595,16 +1605,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "number",
-          "named": true
-        }
-      ]
     }
   },
   {

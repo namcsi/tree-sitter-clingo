@@ -306,12 +306,12 @@ project
   (project_signature
     signature: (metasp_signature
       name: (identifier)
-      (number)))
+      arity: (number)))
   (project_signature
     signature: (metasp_signature
       sign: (classical_negation)
       name: (identifier)
-      (number)))
+      arity: (number)))
   (project_atom
     atom: (metasp_symbolic_atom
       name: (identifier)))

@@ -999,7 +999,7 @@ module.exports = grammar({
     metasp_const_function: ($) =>
       seq(field("name", $._metasp_identifier), optional($._const_arg_pool)),
 
-    metasp_signature: ($) => seq($.metasp_atom_identifier, "/", $.number),
+    metasp_signature: ($) => seq($.metasp_atom_identifier, "/", field("arity", $.number)),
 
     metasp_type: ($) =>
       seq(
