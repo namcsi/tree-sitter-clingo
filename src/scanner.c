@@ -140,7 +140,7 @@ static bool consume_blockcomment(TSLexer *lexer) {
   return true;
 }
 
-bool tree_sitter_clingo_external_scanner_scan(void *payload, TSLexer *lexer,
+bool tree_sitter_metasp_external_scanner_scan(void *payload, TSLexer *lexer,
                                               const bool *valid_symbols) {
   if (valid_symbols[DOC_ARGS] || valid_symbols[DOC_LPAREN] ||
       valid_symbols[DOC_MINUS] || valid_symbols[DOC_STRING_FRAGMENT]) {
@@ -189,16 +189,16 @@ bool tree_sitter_clingo_external_scanner_scan(void *payload, TSLexer *lexer,
 }
 
 // If we need to allocate/deallocate state, we do it in these functions.
-void *tree_sitter_clingo_external_scanner_create() { return NULL; }
+void *tree_sitter_metasp_external_scanner_create() { return NULL; }
 
-void tree_sitter_clingo_external_scanner_destroy(void *payload) {}
+void tree_sitter_metasp_external_scanner_destroy(void *payload) {}
 
 // If we have state, we should load and save it in these functions.
-unsigned tree_sitter_clingo_external_scanner_serialize(void *payload,
+unsigned tree_sitter_metasp_external_scanner_serialize(void *payload,
                                                        char *buffer) {
   return 0;
 }
 
-void tree_sitter_clingo_external_scanner_deserialize(void *payload,
+void tree_sitter_metasp_external_scanner_deserialize(void *payload,
                                                      char *buffer,
                                                      unsigned length) {}

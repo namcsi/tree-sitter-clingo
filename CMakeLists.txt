@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(tree-sitter-clingo
+project(tree-sitter-metasp
         VERSION "1.0.0"
-        DESCRIPTION "Clingo grammar for tree-sitter"
-        HOMEPAGE_URL "https://github.com/potassco/tree-sitter-clingo"
+        DESCRIPTION "Metasp grammar for tree-sitter"
+        HOMEPAGE_URL "https://github.com/potassco/tree-sitter-metasp"
         LANGUAGES C)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
@@ -26,40 +26,40 @@ add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
                    COMMENT "Generating parser.c")
 
-add_library(tree-sitter-clingo src/parser.c)
+add_library(tree-sitter-metasp src/parser.c)
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c)
-    target_sources(tree-sitter-clingo PRIVATE src/scanner.c)
+    target_sources(tree-sitter-metasp PRIVATE src/scanner.c)
 endif()
-target_include_directories(tree-sitter-clingo
+target_include_directories(tree-sitter-metasp
                            PRIVATE src
                            INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/bindings/c>
                                      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-target_compile_definitions(tree-sitter-clingo PRIVATE
+target_compile_definitions(tree-sitter-metasp PRIVATE
                            $<$<BOOL:${TREE_SITTER_REUSE_ALLOCATOR}>:TREE_SITTER_REUSE_ALLOCATOR>
                            $<$<CONFIG:Debug>:TREE_SITTER_DEBUG>)
 
-set_target_properties(tree-sitter-clingo
+set_target_properties(tree-sitter-metasp
                       PROPERTIES
                       C_STANDARD 11
                       POSITION_INDEPENDENT_CODE ON
                       SOVERSION "${TREE_SITTER_ABI_VERSION}.${PROJECT_VERSION_MAJOR}"
                       DEFINE_SYMBOL "")
 
-configure_file(bindings/c/tree-sitter-clingo.pc.in
-               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-clingo.pc" @ONLY)
+configure_file(bindings/c/tree-sitter-metasp.pc.in
+               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-metasp.pc" @ONLY)
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bindings/c/tree_sitter"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
         FILES_MATCHING PATTERN "*.h")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-clingo.pc"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-metasp.pc"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
-install(TARGETS tree-sitter-clingo
+install(TARGETS tree-sitter-metasp
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 
 file(GLOB QUERIES queries/*.scm)
 install(FILES ${QUERIES}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/tree-sitter/queries/clingo")
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/tree-sitter/queries/metasp")
 
 add_custom_target(ts-test "${TREE_SITTER_CLI}" test
                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"

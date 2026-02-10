@@ -2,15 +2,15 @@
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
   "grammars": [
     {
-      "name": "clingo",
-      "camelcase": "Clingo",
-      "title": "Clingo",
-      "scope": "source.clingo",
+      "name": "metasp",
+      "camelcase": "Metasp",
+      "title": "Metasp",
+      "scope": "source.metasp",
       "file-types": [
         "lp"
       ],
-      "injection-regex": "^clingo$",
-      "class-name": "TreeSitterClingo",
+      "injection-regex": "^metasp$",
+      "class-name": "TreeSitterMetasp",
       "highlights": "queries/highlights.scm",
       "injections": "queries/injections.scm"
     }
@@ -18,7 +18,7 @@
   "metadata": {
     "version": "1.0.0",
     "license": "MIT",
-    "description": "Clingo grammar for tree-sitter",
+    "description": "Metasp grammar for tree-sitter",
     "authors": [
       {
         "name": "Roland Kaminski"
@@ -28,7 +28,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/potassco/tree-sitter-clingo"
+      "repository": "https://github.com/potassco/tree-sitter-metasp"
     }
   },
   "bindings": {

@@ -1,10 +1,10 @@
 {
-  "name": "@potassco/tree-sitter-clingo",
+  "name": "@potassco/tree-sitter-metasp",
   "version": "1.0.5",
-  "description": "Clingo grammar for tree-sitter",
+  "description": "Metasp grammar for tree-sitter",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/potassco/tree-sitter-clingo.git"
+    "url": "git+https://github.com/potassco/tree-sitter-metasp.git"
   },
   "license": "MIT",
   "author": {
@@ -19,6 +19,7 @@
     "incremental",
     "parsing",
     "tree-sitter",
+    "metasp",
     "clingo"
   ],
   "files": [

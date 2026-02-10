@@ -1,4 +1,4 @@
-module github.com/potassco/tree-sitter-clingo
+module github.com/potassco/tree-sitter-metasp
 
 go 1.22
 

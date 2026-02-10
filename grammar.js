@@ -23,7 +23,7 @@ const identifier_rgx = /[_']*[a-z][A-Za-z0-9_']*/;
 const variable_rgx = /[_']*[A-Z][A-Za-z0-9_']*/;
 
 module.exports = grammar({
-  name: "clingo",
+  name: "metasp",
 
   extras: ($) => [$.line_comment, $.block_comment, /\s/],
 
